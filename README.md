@@ -218,6 +218,7 @@ Run:
 
 ```bash
 python3 run.py
+```
 
 The simulation generates the following outputs:
 
