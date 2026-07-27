@@ -36,7 +36,30 @@ The repository is organized into three main components: the raw and processed da
 ## Code
 ### src/
 
-main.py : Parses and processes the Boston bombings dataset into a chronological timeline of source tweets and reactions, saving the cleaned data into a single JSON file.
+main.py :
+
+The data processing pipeline converts the sorted PHEME Boston Marathon Bombing girl rumour dataset into structured files used for SDPNRI classification and ABM calibration.
+
+The input dataset should be placed in:
+
+```
+data/aug-rnr-data_full/bostonbombings
+```
+Run:
+
+```bash
+python3 src/main.py
+```
+
+This script extracts tweet activity from rumor and non-rumor cascades, including tweet IDs, user IDs, timestamps, text, activity type, and time since the original source tweet.
+
+The output is:
+
+```
+bostonbombings_clean.json
+```
+
+This file contains the chronological Twitter cascades used as input for the following processing steps.
 
 sort_user.py : reorganizes the cleaned conversation data by grouping all tweets and reactions by user ID instead of thread ID, and saves the result into a new JSON file.
 
