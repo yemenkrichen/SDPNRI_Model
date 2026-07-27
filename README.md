@@ -164,6 +164,121 @@ calibrated_rates.csv
 ```
 
 This file contains the estimated transition rates used to parameterize the mathematical SDPNRI model.
+
+### abm/ (Validation ABM) :
+
+#### agent.py
+
+Defines the Twitter user agents in the Agent-Based Model and implements their SDPNRI state transition behavior.
+
+#### model.py
+
+Defines the SDPNRI Agent-Based Model environment and manages agent initialization, time progression, and population state tracking.
+
+#### parameters.py
+
+Stores the model parameters, including transition rates, time step, and bias/emotion variables used by the Agent-Based Model.
+
+#### run.py
+
+Run:
+
+```bash
+python3 run.py
+```
+
+This script runs the SDPNRI Agent-Based Model simulation using the processed user timelines and calibrated transition parameters.
+
+The outputs are:
+
+```
+abm_results.csv
+sdpnri_cascade_plot.png
+```
+
+The CSV file contains the simulated SDPNRI compartment populations over time, while the plot visualizes the evolution of the misinformation cascade.
+
+### abm2/ (Simulation ABM) :
+
+#### agent.py
+
+Defines the agents used in the simulation ABM and implements the effects of political bias and emotional contagion on SDPNRI state transitions.
+
+#### model.py
+
+Defines the simulation ABM environment, initializes the agent population, and tracks SDPNRI compartment dynamics over time.
+
+#### parameters.py
+
+Stores the simulation parameters, including population size, transition rates, simulation duration, and parameter sweep ranges.
+
+#### run.py
+
+Run:
+
+```bash
+python3 run.py
+
+The simulation generates the following outputs:
+
+debunker_threshold_results.csv`
+
+Contains the results of all parameter sweep experiments.
+
+Each row represents one simulation scenario and includes:
+
+- `b_exponent`: Political polarization sensitivity parameter.
+- `debunker_rate`: Probability of transition into the immune/debunker (`I`) state.
+- `avg_peak_attack_pct`: Average maximum percentage of users actively spreading misinformation (`P + N`).
+- `R0`: Estimated reproduction number for the given scenario.
+
+This file is used to analyze how political polarization and debunking effectiveness affect misinformation spread.
+
+---
+
+figure1_debunker_sweeps.png`
+
+Shows the relationship between debunker effectiveness and the peak misinformation attack rate.
+
+Each curve represents a different level of political polarization, allowing comparison of how polarization changes the required intervention strength.
+
+---
+
+figure2_critical_threshold_curve.png`
+
+Shows the theoretical critical debunker threshold required to achieve:
+
+\[
+R_0 \leq 1
+\]
+
+as political polarization increases.
+
+This illustrates how stronger polarization requires a larger proportion of immune/debunker agents to control misinformation spread.
+
+---
+
+figure2_compartment_evolution_grid.png`
+
+Shows the time evolution of all SDPNRI compartments over the 72-hour simulation period.
+
+The plot tracks changes in:
+
+- Susceptible users (`S`)
+- Doubtful users (`D`)
+- Positive rumor spreaders (`P`)
+- Negative rumor spreaders (`N`)
+- Restrained users (`R`)
+- Immune/debunker users (`I`)
+
+---
+
+figure3_recommended_threshold_dynamics.png`
+
+Shows the SDPNRI dynamics when applying the theoretically calculated debunker threshold.
+
+This output compares the mathematical prediction with the Agent-Based Model behavior to evaluate whether the theoretical threshold is effective in the simulated social network.
+
 ## Limitations
 The model is calibrated a subset from the PHEME dataset tha represents a well-documented casey study. however, the findings may not generealize to other misinformation events.
 
