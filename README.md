@@ -36,7 +36,7 @@ The repository is organized into three main components: the raw and processed da
 ## Code
 ### src/
 
-main.py :
+#### main.py :
 
 The data processing pipeline converts the sorted PHEME Boston Marathon Bombing girl rumour dataset into structured files used for SDPNRI classification and ABM calibration.
 
@@ -61,7 +61,7 @@ bostonbombings_clean.json
 
 This file contains the chronological Twitter cascades used as input for the following processing steps.
 
-sort_user.py :
+#### sort_user.py :
 
 Run:
 
@@ -81,7 +81,7 @@ boston_users_database.json
 
 This JSON file contains the complete activity history of each user and serves as the input for the SDPNRI classification step.
 
-vader.py :
+#### vader.py :
 
 Run:
 
@@ -129,7 +129,7 @@ sdpnri_timeline_diagram.png
 
 which visualizes the evolution of the SDPNRI compartments over time in the observed Twitter cascade.
 
-series.py :
+#### series.py :
 
 Run:
 
@@ -147,7 +147,7 @@ compartment_timeseries.csv
 
 This file is used for analyzing misinformation dynamics and calibrating the SDPNRI model.
 
-calibration.py :
+#### calibration.py :
 
 Run:
 
