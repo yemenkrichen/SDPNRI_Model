@@ -38,9 +38,7 @@ The repository is organized into three main components: the raw and processed da
 
 main.py : Parses and processes the Boston bombings dataset into a chronological timeline of source tweets and reactions, saving the cleaned data into a single JSON file.
 
-sort_users.py : reorganizes the cleaned conversation data by grouping all tweets and reactions by user ID instead of thread ID, and saves the result into a new JSON file.
-
-text_only: Extracts all text for classification.
+sort_user.py : reorganizes the cleaned conversation data by grouping all tweets and reactions by user ID instead of thread ID, and saves the result into a new JSON file.
 
 vader.py : Classifies each activity into its adequate SDPNRI compartment based on LLMs result and VADER which is sentiment-analysis tool specialized for social media text.
 
