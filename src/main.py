@@ -2,7 +2,6 @@ import os
 import json
 from datetime import datetime
 
-
 p="data/aug-rnr-data_full/bostonbombings"
 subs = ["rumours","non-rumours"]
 res ={}
@@ -19,12 +18,10 @@ for sub in subs:
         t_dir = os.path.join(sub_path,thread)
         if not os.path.isdir(t_dir) or thread.startswith("."):
             continue
-        
         t0 = None
         orig_user = None
         src_f = None
         res[thread] = []
-        
         src_dir= os.path.join(t_dir,"source-tweets")
         files= [f for f in os.listdir(src_dir) if f.endswith(".json") and not f.startswith(".")]
         if files:
@@ -42,7 +39,6 @@ for sub in subs:
                     txt = tgt.get("full_text") or tgt.get("text","")
                     rc= tgt.get("retweet_count",0)
                     fc= tgt.get("favorite_count",0)
-
                 if orig_user and t0:
                     res[thread].append(
                            {
@@ -109,8 +105,6 @@ for sub in subs:
                         res[thread].append(action_data)
                         
         res[thread] = sorted(res[thread],key=lambda x: x["seconds_since_t0"])
-
-
 with open("bostonbombings_clean.json","w",encoding="utf-8") as out:
     json.dump(res,out,indent=4,default=str)
 

@@ -1,15 +1,12 @@
 import json
 import csv
 
-
 transition = "boston_user_transitions.json"
 output = "compartment_timeseries.csv"
-
 restrained = 12 * 60 *60      # 12 hours =43200 seconds
 
 with open(transition, "r") as f:
     data = json.load(f)
-
 events = []
 counts = {
     "S": 0,
@@ -19,7 +16,6 @@ counts = {
     "R": 0,
     "I": 0
 }
-
 for user, history in data.items():
     if history == []: #check if the users are relevant
         continue
@@ -56,12 +52,9 @@ rows.append([
 ])
 
 for event in events:
-
     source, target = event["transition"].split("->")
-
     counts[source] -= 1
     counts[target] += 1
-
     rows.append([
         event["time"],
         counts["S"],
@@ -73,9 +66,7 @@ for event in events:
     ])
 
 with open(output, "w", newline="") as f:
-
     writer = csv.writer(f)
-
     writer.writerow([
         "time",
         "S",
@@ -85,6 +76,5 @@ with open(output, "w", newline="") as f:
         "R",
         "I"
     ])
-
     writer.writerows(rows)
 print(f"Saved {output}")
