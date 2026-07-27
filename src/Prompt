@@ -31,9 +31,3 @@ Do not use the PHEME rumour/non-rumour folder label as a shortcut -- read
 the actual tweet text. A tweet in the "non-rumours" folder can still be
 extracted if it relates to this rumor, and a tweet in the "rumours" folder
 should be skipped if it's about a different rumor.
-
-OUTPUT: a plain list, one line per matching tweet:
-  <tweet_id> : <full tweet text>
-
-Process every folder in both rumours/ and non-rumours/ -- do not sample or
-skip any. At the end, print the total count of extracted tweets.
