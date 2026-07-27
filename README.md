@@ -33,6 +33,32 @@ pip install mesa pandas numpy nltk matplotlib networkx
 ```
 ## Project Structure
 The repository is organized into three main components: the raw and processed datasets, the data processing pipeline, and the Agent-Based Model (ABM) simulation environment.
+## Extracting Data
+This project uses a subset of the **Augmented dataset of rumours and non-rumours for rumour detection** (PHEME-Aug v1.0), specifically the **2013 Boston Marathon Bombings** event.
+
+> Han, S., Gao, J., & Ciravegna, F. (2019). *Augmented dataset of rumours and non-rumours for rumour detection* (Version 1.0) [Data set]. Zenodo.
+> https://doi.org/10.5281/zenodo.3249977
+
+This dataset augments the original PHEME dataset of rumours and non-rumours, and should also be cited alongside:
+
+> Han, S., Gao, J., & Ciravegna, F. (2019). Data Augmentation for Rumor Detection Using Context-Sensitive Neural Language Model With Large-Scale Credibility Corpus. *7th International Conference on Learning Representations (ICLR) Learning from Limited Labeled Data Workshop*, New Orleans, LA, USA.
+>
+> Kochkina, E., Liakata, M., & Zubiaga, A. (2018). All-in-one: Multi-task Learning for Rumour Verification. *COLING*.
+
+Dataset structure (as distributed): each event directory contains two subfolders, `rumours/` and `non-rumours/`, each containing one folder per tweet, named by tweet ID, holding a `source-tweet/` directory (the tweet itself) and a `reactions/` directory (replies to it).
+
+The full dataset is not redistributed here, both due to size and to respect the dataset's original distribution channel.
+
+### Reproducing the subset
+To reproduce the subset I used Claude AI to go through all source-tweets in the rumours/ and non-rumours/ folders to extract what is relevant to the girl being killed in a marathon rumour.
+The prompt used is attached.
+
+1. Download `aug-rnr-data.tar.bz2` from
+   https://zenodo.org/records/3249977 and extract it locally.
+2. Locate the `2013 Boston marathon bombings` event directory inside the
+   extracted archive (`BOSTON_EVENT_DIR`).
+3. Run:
+   
 ## Code
 ### src/
 
