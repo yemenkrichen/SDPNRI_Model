@@ -17,10 +17,10 @@ To run this project, clone the repository and install the required Python depend
 
 ```bash
 # Clone the repository
-git clone https://github.com/yemenkrichen/Research-Internship.git
+git clone https://github.com/yemenkrichen/SDPNRI_Model.git
 
 # Navigate to the project directory
-cd Research-Internship
+cd SDPNRI_Model
 
 # Create a virtual environment
 python3 -m venv venv
