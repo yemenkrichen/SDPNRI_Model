@@ -1,0 +1,39 @@
+You have access to the "2013 Boston marathon bombings" event directory from
+the Han/Gao/Ciravegna augmented PHEME dataset (Zenodo DOI 10.5281/zenodo.3249977).
+It contains two subfolders, `rumours/` and `non-rumours/`, each holding one
+folder per tweet ID, with the tweet text inside `source-tweet/<id>.json`
+(field: "text").
+
+TASK: Read through every tweet in both `rumours/` and `non-rumours/`, and
+extract every folder name tweet that relates to this specific rumor:
+
+  THE RUMOR: the false claim that an 8-year-old GIRL, a survivor of the
+  Sandy Hook Elementary School shooting, was killed in the Boston Marathon
+  bombing while running the marathon in tribute to the Sandy Hook victims.
+  The true fact is that the victim was an 8-year-old BOY, Martin Richard,
+  a spectator (not a runner) waiting for his father to finish the race.
+
+A tweet relates to this rumor if it does ANY of the following:
+  - repeats the false claim (girl died, in any phrasing)
+  - states the accurate fact as a correction/parallel to this rumor (boy,
+    age 8, waiting for his father)
+  - explicitly debunks or rejects the rumor ("that's fake," "it was a boy,
+    not a girl," etc.)
+
+Do NOT include rumours about the boy being killed while running for Sandy Hooks as this is still wrong and represent noise for my dataset.
+
+Do NOT extract a tweet just because it mentions the Boston bombing
+generally, a different rumor (e.g. JFK Library explosion, explosive device
+counts, Westboro Baptist Church), or condolences/prayers with no reference
+to the child's death.
+
+Do not use the PHEME rumour/non-rumour folder label as a shortcut -- read
+the actual tweet text. A tweet in the "non-rumours" folder can still be
+extracted if it relates to this rumor, and a tweet in the "rumours" folder
+should be skipped if it's about a different rumor.
+
+OUTPUT: a plain list, one line per matching tweet:
+  <tweet_id> : <full tweet text>
+
+Process every folder in both rumours/ and non-rumours/ -- do not sample or
+skip any. At the end, print the total count of extracted tweets.
