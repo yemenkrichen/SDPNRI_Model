@@ -58,6 +58,10 @@ The prompt used is attached.
 2. Locate the `2013 Boston marathon bombings` event directory inside the
    extracted archive (`BOSTON_EVENT_DIR`).
 3. Run:
+```bash
+python3 src/compare_rumors.py
+```
+4. Upload the obtained file all_tweets.txt to Claude AI and use src/Prompt to get the relevant folders.
    
 ## Code
 ### src/
