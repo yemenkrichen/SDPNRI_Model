@@ -280,9 +280,7 @@ figure2_critical_threshold_curve.png`
 
 Shows the theoretical critical debunker threshold required to achieve:
 
-\[
-R_0 \leq 1
-\]
+$$R_0 \leq 1$$
 
 as political polarization increases.
 
