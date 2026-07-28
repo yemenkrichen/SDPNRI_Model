@@ -310,7 +310,7 @@ Shows the SDPNRI dynamics when applying the theoretically calculated debunker th
 This output compares the mathematical prediction with the Agent-Based Model behavior to evaluate whether the theoretical threshold is effective in the simulated social network.
 
 ## Limitations
-The model is calibrated a subset from the PHEME dataset tha represents a well-documented casey study. however, the findings may not generealize to other misinformation events.
+The model is calibrated a subset from the PHEME dataset that represents a well-documented case study. however, the findings may not generalize to other misinformation events.
 
 Political bias is introduced as a controllable variable rather than being inferred from real user data. Consequently, the model explores hypothetical scenarios rather than reconstructing the true ideological characteristics of individual Twitter users.
 
