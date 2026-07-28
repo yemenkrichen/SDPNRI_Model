@@ -1,0 +1,72 @@
+You will be given a larger set of texts extracted from Twitter user activities
+replies to a source tweet are not automatically about the same rumor just
+because they're replying to a tweet that is. Treat every text you're given as
+unscreened until you classify it below.
+ 
+THE RUMOR: the false claim that an 8-year-old GIRL, a survivor of the
+Sandy Hook Elementary School shooting, was killed in the Boston Marathon
+bombing while running the marathon in tribute to the Sandy Hook victims.
+The true fact is that the victim was an 8-year-old BOY, Martin Richard,
+a spectator (not a runner) waiting for his father to finish the race.
+ 
+TASK: Sort every text into exactly ONE of the following two lists:
+ 
+1. DOUBTFUL (D)
+   The text expresses uncertainty, hesitation, or a request for
+   verification about the rumor -- it neither confirms nor denies it, but
+   signals the author is unsure. Examples of the pattern (not exhaustive):
+   "is this true?", "can someone confirm this?", "I hope this isn't real",
+   "not sure if this is legit," hedged phrasing like "reportedly" or
+   "apparently" used to flag uncertainty rather than to assert the claim.
+ 
+2. IMMUNE (I)
+   The text actively rejects, corrects, or debunks the rumor with
+   confidence -- it asserts the rumor is false, not just questions it.
+   Examples of the pattern: "this is fake," "it was a boy, not a girl,"
+   "that's a sick and twisted rumor," "false, do not share this."
+ 
+3. IRRELEVANT
+   The text is about something completely unrelated to this rumor --
+   general Boston bombing commentary, condolences, a different rumor
+   about the same event, unrelated conversation, etc. IRRELEVANT means
+   off-topic, nothing more.
+ 
+CRITICAL EXCLUSION RULE:
+   If a text simply REPEATS or SPREADS the rumor (states the false claim
+   as fact, with no doubt and no correction), it is an INFECTED /
+   rumor-spreading text -- this does NOT belong in DOUBTFUL, IMMUNE, or
+   IRRELEVANT. Do not classify it at all. Leave it out of every list and
+   do not mention it anywhere in your output. Only texts that either
+   doubt the rumor, debunk the rumor, or are unrelated to the rumor
+   should appear in your output.
+ 
+RULES:
+- Assign IMMUNE only when the text is confidently rejecting the rumor. If
+  it merely questions or hedges without asserting the rumor is false, it
+  is DOUBTFUL, not IMMUNE.
+- Process every text given to you, but only output the ones that qualify
+  for DOUBTFUL, IMMUNE, or IRRELEVANT per the definitions above. Infected/
+  rumor-spreading texts are silently excluded per the rule above.
+ 
+OUTPUT FORMAT: produce exactly three Python-style lists, using the full
+text as each list element (not the tweet ID), like this:
+ 
+doubtful = [
+    "text 1",
+    "text 2",
+    ...
+]
+ 
+immune = [
+    "text 1",
+    "text 2",
+    ...
+]
+ 
+irrelevant = [
+    "text 1",
+    "text 2",
+    ...
+]
+ 
+Output only these three lists.
