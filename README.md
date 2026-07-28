@@ -125,7 +125,7 @@ This script classifies each user activity into one of the SDPNRI compartments us
 The classification process includes:
 
 - Normalizing tweet text by removing URLs, formatting inconsistencies, and unnecessary characters.
-- Using previously identified examples classified with a LLM to identify doubtful (`D`) and immune/debunking (`I`) behaviors.
+- Using previously identified text with `src/text.only.py` classified with claud AI to identify doubtful (`D`) and immune/debunking (`I`) behaviors and irrelevant text using `src/Prompt2`
 - Applying VADER sentiment analysis to determine emotional polarity:
   - Negative emotional reactions are classified as negatively infected (`N`).
   - Other emotional reactions are classified as positively infected (`P`).
