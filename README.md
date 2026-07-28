@@ -62,6 +62,7 @@ The prompt used is attached.
 python3 src/compare_rumors.py
 ```
 4. Upload the obtained file all_tweets.txt to Claude AI and use src/Prompt to get the relevant folders.
+5. Use src/clean_non_rumours.py and src/clean_rumours.py to delete the irrelevant folders for your data.
    
 ## Code
 ### src/
