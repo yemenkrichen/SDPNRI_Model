@@ -50,7 +50,7 @@ Dataset structure (as distributed): each event directory contains two subfolders
 The full dataset is not redistributed here, both due to size and to respect the dataset's original distribution channel.
 
 ### Reproducing the subset
-To reproduce the subset I used Claude AI to go through all source-tweets in the rumours/ and non-rumours/ folders to extract what is relevant to the girl being killed in a marathon rumour.
+To reproduce the subset I used Claude AI to go through all source-tweets in the `rumours/` and `non-rumours/` folders to extract what is relevant to the girl being killed in a marathon rumour.
 The prompt used is attached.
 
 1. Download `aug-rnr-data.tar.bz2` from
@@ -59,10 +59,10 @@ The prompt used is attached.
    extracted archive (`BOSTON_EVENT_DIR`).
 3. Run:
 ```bash
-python3 src/compare_rumors.py
+python3 `src/compare_rumors.py`
 ```
 4. Upload the obtained file all_tweets.txt to Claude AI and use src/Prompt to get the relevant folders.
-5. Use src/clean_non_rumours.py and src/clean_rumours.py to delete the irrelevant folders for your data.
+5. Use `src/clean_non_rumours.py` and `src/clean_rumours.py` to delete the irrelevant folders for your data.
    
 ## Code
 ### src/
