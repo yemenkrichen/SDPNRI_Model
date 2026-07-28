@@ -31,3 +31,36 @@ Do not use the PHEME rumour/non-rumour folder label as a shortcut -- read
 the actual tweet text. A tweet in the "non-rumours" folder can still be
 extracted if it relates to this rumor, and a tweet in the "rumours" folder
 should be skipped if it's about a different rumor.
+OUTPUT FORMAT (IMPORTANT):
+
+Return ONLY two Python set objects containing the folder names (tweet IDs) that match the criteria.
+
+Use exactly this format:
+
+rumours = {
+    ...
+}
+
+non_rumours = {
+    ...
+}
+
+Replace the `...` with the matching folder names as strings, for example:
+
+rumours = {
+    "folder_name_1",
+    "folder_name_2",
+    ...
+}
+
+non_rumours = {
+    "folder_name_3",
+    "folder_name_4",
+    ...
+}
+
+Requirements:
+- Use the folder names (tweet IDs), not the tweet text.
+- Include each folder only once.
+- Return no explanations, markdown, comments, or additional text.
+- If no matching folders exist in one category, return an empty set (`{}`).
