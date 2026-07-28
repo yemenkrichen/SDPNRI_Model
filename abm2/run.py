@@ -133,11 +133,11 @@ def generate_primary_plots(df):
     plt.tight_layout()
 
     fig1.savefig(
-        "figure1_debunker_sweeps.png",
+        "debunker_sweeps.png",
         dpi=300
     )
 
-    print("Saved figure1_debunker_sweeps.png")
+    print("Saved debunker_sweeps.png")
 
 
 def plot_critical_threshold_curve():
@@ -185,8 +185,8 @@ def plot_critical_threshold_curve():
     )
 
     plt.tight_layout()
-    fig.savefig("figure2_critical_threshold_curve.png", dpi=300)
-    print("Saved figure2_critical_threshold_curve.png")
+    fig.savefig("critical_threshold_curve.png", dpi=300)
+    print("Saved critical_threshold_curve.png")
 
 
 def plot_baseline_compartment_evolution(p_si_target=p.p_si_empirical):
@@ -300,17 +300,15 @@ def plot_baseline_compartment_evolution(p_si_target=p.p_si_empirical):
     plt.tight_layout()
 
     fig.savefig(
-        "figure2_compartment_evolution_grid.png",
+        "compartment_evolution_grid.png",
         dpi=300,
         bbox_inches='tight'
     )
 
-    print("Saved figure2_compartment_evolution_grid.png")
+    print("Saved compartment_evolution_grid.png")
 
 
 def plot_recommended_threshold_compartment_evolution():
-
-    print("\nGenerating figure 3...")
 
     fig, axes = plt.subplots(
         2,
@@ -423,12 +421,12 @@ def plot_recommended_threshold_compartment_evolution():
     plt.tight_layout()
 
     fig.savefig(
-        "figure3_recommended_threshold_dynamics.png",
+        "recommended_threshold_dynamics.png",
         dpi=300,
         bbox_inches='tight'
     )
 
-    print("Saved figure3_recommended_threshold_dynamics.png")
+    print("Saved recommended_threshold_dynamics.png")
 
 
 if __name__ == "__main__":
