@@ -268,7 +268,7 @@ This file is used to analyze how political polarization and debunking effectiven
 
 ---
 
-figure1_debunker_sweeps.png`
+debunker_sweeps.png`
 
 Shows the relationship between debunker effectiveness and the peak misinformation attack rate.
 
@@ -276,7 +276,7 @@ Each curve represents a different level of political polarization, allowing comp
 
 ---
 
-figure2_critical_threshold_curve.png`
+critical_threshold_curve.png`
 
 Shows the theoretical critical debunker threshold required to achieve:
 
@@ -288,7 +288,7 @@ This illustrates how stronger polarization requires a larger proportion of immun
 
 ---
 
-figure2_compartment_evolution_grid.png`
+compartment_evolution_grid.png`
 
 Shows the time evolution of all SDPNRI compartments over the 72-hour simulation period.
 
@@ -303,7 +303,7 @@ The plot tracks changes in:
 
 ---
 
-figure3_recommended_threshold_dynamics.png`
+recommended_threshold_dynamics.png`
 
 Shows the SDPNRI dynamics when applying the theoretically calculated debunker threshold.
 
