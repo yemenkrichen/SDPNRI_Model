@@ -55,8 +55,7 @@ The prompt used is attached.
 
 1. Download `aug-rnr-data.tar.bz2` from
    https://zenodo.org/records/3249977 and extract it locally.
-2. Locate the `2013 Boston marathon bombings` event directory inside the
-   extracted archive (`BOSTON_EVENT_DIR`).
+2. Locate the 2013 Boston marathon bombings event inside the folder `bostonbombings`.
 3. Run:
 ```bash
 python3 `src/compare_rumors.py`
