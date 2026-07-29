@@ -20,12 +20,12 @@
 \begin{document}
 \maketitle
 
-\begin{abstract}
-\textit{[Abstract to be added.]}
-\end{abstract}
-
 \section{Introduction}
-\textit{[Introduction to be added.]}
+
+Epidemiological modeling frameworks, such as the classical Susceptible-Infectious-Recovered (SIR) model, have long provided foundational mathematical tools for understanding how information spreads through populations. While these methods originated in public health, researchers have increasingly adapted compartmental dynamics to study the diffusion of digital information and misinformation across online networks.
+My motivation to build this project began when I critically questioned the extent to which existing frameworks, such as the recent SEDPNR model https://www.nature.com/articles/s41598-024-69657-0 (Susceptible, Exposed, Doubtful, Positively-Infected, Negatively-Infected, Restrained), truly represent real-world sociological dynamics. Specifically, traditional models often assume that agents cannot gain complete immunity and will inevitably fall back into a susceptible state. Furthermore, models incorporating an "exposed" ($E$) compartment treat exposure as a latent phase akin to physical disease incubation. However, in digital environments, exposure to misinformation is instantaneous, and standard frameworks lack compartments that capture the active sociological impact of debunkers and experts.
+To address these limitations, this project introduces a custom agent-based SDPNRI model. By removing the exposed compartment and introducing an Immune ($I$) compartment representing active debunkers, this framework investigates a core research question: How does the introduction of political confirmation bias change the macroscopic density of active debunkers required to contain an online rumor compared to a purely emotional baseline? Using dynamic retweet probabilities where political bias acts as a multiplier against emotional intensity, the study evaluates how automated institutional intervention strategies can be scaled to maintain containment across polarized social networks.
+
 
 \section{Methodology}
 
@@ -42,7 +42,7 @@ spread faster with a scaling susceptible density in a physical environment,
 misinformation spread doesn't depend on the number of users but rather on network
 topology, such as the number of followers and feed algorithms; intuitively, having a
 bigger population doesn't imply having more social connections than in a smaller one.
-Therefore, my model is frequency dependent.
+Therefore, my model is frequency dependent. (book)
 
 In classical epidemiology frameworks, we assume homogeneous mixing and passive hosts,
 where all individuals share identical properties and equal probabilities of
@@ -219,7 +219,7 @@ and information fatigue sets in (Li et al., 2021; Pfeffer et al., 2023).
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figs/boston_bombings.png}
+\includegraphics[width=0.85\textwidth]{sdpnri_timeline_diagram.png}
 \caption{SDPNRI compartment dynamics over time, calibrated on the Boston Marathon
 bombings dataset. $N = 482$.}
 \label{fig:boston_bombings}
@@ -276,7 +276,7 @@ mimic the real-world social networks dynamics.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figs/abm_simulation.png}
+\includegraphics[width=0.85\textwidth]{sdpnri_cascade_plot.png}
 \caption{SDPNRI compartment dynamics over time from the Agent-Based Model simulation,
 compared against the empirical Boston Marathon bombings data.}
 \label{fig:abm_simulation}
@@ -319,7 +319,7 @@ Where:
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.75\textwidth]{figs/fig_emotional_curve.png}
+\includegraphics[width=0.75\textwidth]{bias_emotional_amplification.png}
 \caption{Non-Linear Emotional Amplification Curve.}
 \label{fig:emotional_curve}
 \end{figure}
@@ -340,7 +340,7 @@ proportionally between the two states, ensuring that
 $P(S \rightarrow P) + P(S \rightarrow N) \le \beta_{PN}$, with
 
 \begin{equation*}
-\beta_{PN} = \beta_0 \times \left(1 + \left\vert \text{Bias} - 1.0 \right\vert\right)^b
+\beta P_N = \beta_0 \times E_{\text{effective}} \times (1 + \vert{}\text{Bias} - 1.0\vert{})^b$$
 \end{equation*}
 
 \noindent and
@@ -356,11 +356,9 @@ P(S \rightarrow N) &= \beta_{PN} \times \left( \frac{w_N}{w_P + w_N} \right)
 
 \section{Results}
 
-\subsection{R0 and Epidemic Thresholds}
-
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figs/fig_peak_attack_rate.png}
+\includegraphics[width=0.85\textwidth]{figure1_attack_vs_debunker.png}
 \caption{Rumor Peak Attack Rate vs.\ Debunker Rate ($p_{SI}$) with $R_0 \le 1.0$
 Threshold.}
 \label{fig:peak_attack_rate}
@@ -368,7 +366,7 @@ Threshold.}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figs/fig_72hr_polarization.png}
+\includegraphics[width=0.85\textwidth]{figure4_threshold_curve.png}
 \caption{72-Hour SDPNRI Compartment Dynamics across Polarization Levels (Debunker
 Rate $p_{SI} = 3.8\%$).}
 \label{fig:72hr_polarization}
@@ -376,20 +374,58 @@ Rate $p_{SI} = 3.8\%$).}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.75\textwidth]{figs/fig_critical_threshold.png}
+\includegraphics[width=0.75\textwidth]{figure2_baseline_dynamics.png}
 \caption{Critical Debunker Threshold ($l^{*}$) as a Function of Political Bias ($b$).}
 \label{fig:critical_threshold}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figs/fig_72hr_r0_threshold.png}
+\includegraphics[width=0.85\textwidth]{figure3_threshold_dynamics.png}
 \caption{72-Hour SDPNRI Compartment Dynamics at Theoretical $R_0 \le 1.0$ Debunker
 Intervention Rates.}
 \label{fig:72hr_r0_threshold}
 \end{figure}
 
-\section*{References}
+To address my research question, my ABM will simulate rumor propagation across a population of $N = 482$ agents over a 72-hour period. Agents are initialized with randomized political bias values drawn from a bimodal Gaussian distribution ($\mu_1 = 0.4, \mu_2 = 1.6$) and uniformly distributed emotional intensity values.
+At each hourly time step, susceptible agents ($S$) undergo probabilistic transitions based on their emotional activation ($E_{effective}$) and political polarization exponent ($b$). To evaluate how political bias affects the threshold of Immune/Debunkers required to contain rumor outbreaks, I implemented an automated threshold-searching algorithm.
+First, the simulation sweeps across different values of the Susceptible to Immune transmission rate ($p_{si}$) with zero political bias ($b = 0$). The peak rumor attack percentage, defined as the proportion of infected individuals both negative and positive at the empirical baseline rate ($p_{si} = 0.03836$), that I calibrated using my data under $b = 0$, following the assumption that my selected data for my rumour has 0 political bias, is established as the target maximum outbreak size to avoid further spread of the rumour.
+For each elevated polarization level ($b \in \{0.5, 1.0, 2.0\}$), the sweep results are sorted in ascending order by debunker rate. The algorithm identifies the interval where the peak rumor attack crosses downward across the baseline target peak. we use linear interpolation to precisely calculate the required debunker threshold ($p_{si}^*$) when a crossover occurs between adjacent discrete test points ($y[i]$ and $y[i+1]$).
 
+ $$\text{threshold} = \text{np.interp}\left(\text{baseline\_peak}, [y[i+1], y[i]], [x[i+1], x[i]]\right)$$
+
+ \section{Findings}
+
+The simulation results demonstrate that political polarization significantly amplifies rumor propagation, shifting the peak attack curves upward across all debunker rates. When intervention capacity is held static at baseline levels, higher polarization leads to more intense, sharper rumor outbreaks and reduced overall immunity. However, by implementing an automated threshold-searching protocol, the model successfully determines that scaling the debunker transition rate ($p_{si}^*$) from 3.8\% to over 21\% per hour as polarization increases ($b$ from $0.0$ to $2.0$) effectively locks and suppresses the peak rumor outbreak to match the unpolarized control level. Ultimately, this reveals a strong, nearly linear relationship establishing that heavily polarized populations require a proportionally heavier institutional intervention capacity to maintain control over misinformation. However, these results might seem a little bit unrealistic which will be discussed further in the limitation section.
+
+ \section{Limitations:}
+
+Sample Size and Generalizability: The agent population size ($N = 482$) represents a relatively small sample, and baseline parameters are calibrated from specific empirical data (PHEME), which may limit the generalizability of absolute numerical values to broader, real-world social environments. 
+
+Quantification of Political Bias: The model operationalizes political polarization via a global exponent ($b$) and a simplified spatial distance metric relative to a neutral center, without establishing a dynamic mechanism to fully quantify or evolve individual political bias over time.
+
+Dominance of the Susceptible-to-Immune Pathway: The $S \to I$ transition served as the primary and dominant mechanism for rumor suppression, while alternative corrective pathways ($D \to I$, $P \to I$, and $N \to I$) were barely existent in practice, which justified focusing optimization and threshold analysis exclusively on $p_{si}$.
+
+ \section{Conclusion:}
+
+In conclusion, this study successfully demonstrates that while political polarization accelerates and intensifies rumor propagation, an automated threshold-based intervention protocol can effectively neutralize it. By dynamically scaling the debunker transition rate ($p_{si}^*$) from 3.8\% to over 21\% per hour as polarization increases ($b$ from $0.0$ to $2.0$), the model successfully contains peak rumor outbreaks back down to baseline control levels. These findings highlight a strong, nearly linear relationship establishing that heavily polarized populations require a proportionally heavier institutional intervention capacity to maintain control over misinformation.
+
+
+\section*{References}
+\begin{itemize}
+    \item Bail, C. A., Argyle, L. P., Brown, T. W., Bumpus, J. P., Chen, H., Fallin Hunzaker, M. B., Lee, J., Mann, M. L., Merhout, F., & Volfovsky, A. (2018). Exposure to opposing views on social media can increase political polarization. \emph{Proceedings of the National Academy of Sciences}, 115(37), 9216–9221.
+    \item Han, S., Gao, J., \& Ciravegna, F. (2019). Data augmentation for rumor detection using context-sensitive neural language model with large-scale credibility corpus. \emph{Proceedings of the 2019 Seventh International Conference on Learning Representations (ICLR) Workshop on Learning with Limited Labeled Data}.
+    \item Iyengar, S., Lelkes, Y., Levendusky, M., Malhotra, N., \& Westwood, S. J. (2019). The origins and consequences of affective polarization in the United States. \emph{Annual Review of Political Science}, 22, 129–146.
+    \item Kochkina, E., Li, Z., \& Augenstein, I. (2018). Turing at SemEval-2018 Task 8: Sequential approach to rumour stance classification on social media. \emph{Proceedings of the 12th International Workshop on Semantic Evaluation (SemEval-2018)}, 460–464.
+    \item Li, X., Zhou, Y., Zhu, Y., \& Zhang, H. (2021). The impact of fake news on social media users during the COVID-19 pandemic: A deep look. 
+    \item Olteanu, A., Castillo, F., Diaz, F., & Vieweg, S. (2015). CrisisLex: A lexicon for collecting and filtering microblogged communications in crises. *(Alternatively associated in crisis informatics with: Temnikova, I., Castillo, C., & Vieweg, S. (2015). EMTerms 1.0: A terminological resource for crisis tweets).*
+    \item Pfeffer, J., et al. (2023). Social media, misinformation and harmful algorithms: What we know, and don't know, about political online safety. \emph{UK Parliament Research Briefing / Written Evidence}.
+    \item Han, S., Gao, J., Ciravegna, F. (2019). "Data Augmentation for Rumor Detection Using Context-Sensitive Neural Language Model With Large-Scale Credibility Corpus", Seventh International Conference on Learning Representations (ICLR) LLD, May 2019, New Orleans, Louisiana, US
+
+[1] Kochkina, E., Liakata, M., & Zubiaga, A. (2018). All-in-one: Multi-task Learning for Rumour Verification. COLING.
+
+[2] Olteanu, A., Vieweg, S., & Castillo, C. (2015, February). What to expect when the unexpected happens: Social media communications across crises. In Proceedings of the 18th ACM conference on computer supported cooperative work & social computing (pp. 994-1009). ACM
+
+\end{itemize}
 
 \end{document}
